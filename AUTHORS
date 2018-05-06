@@ -1,0 +1,24 @@
+Perfect Paper Passwords / PPP
+
+Original by Steve Gibson:
+https://www.grc.com/ppp
+
+Java and C implementation by John Graham-Cumming:
+http://www.jgc.org/blog/2007/11/pppv2-in-java-and-c.html
+
+Changes for compiling C version on Windows and Ubuntu Gutsy Gibbon by Lauri Ojansivu:
+http://lauri.ojansivu.googlepages.com/ppp
+
+
+SHA implemetation by:
+http://www.ouah.org/ogay/sha2/
+
+Rijndael implementation by:
+http://www.efgh.com/software/rijndael.htm
+
+rdtsc by Kazutomo Yoshii (on Windows instead of loadavg):
+http://www-unix.mcs.anl.gov/~kazutomo/rdtsc.html
+
+
+
+License: BSD

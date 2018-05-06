@@ -1,0 +1,38 @@
+INSTALL
+
+Windows
+-------
+1. Install MinGW Developer Studio for Windows from http://www.parinyasoft.com/
+
+2. If you are on Vista, either:
+
+   a) copy StartMinGW.bat to desktop and doubleclick it (easier way)
+
+   b) add paths of the StartMinGW.bat to your environment variable, as quoted from
+      http://techknowsis.beesquared.biz/2007/08/25/InstallingPHPOnWindowsVistaAndWindowsServer2003.aspx
+      "In Vista, you can edit the PATH variable by going to the Control Panel --> System
+      and Maintenance --> System window and clicking on the "Advanced system settings" link
+      in the left column.  After you approve the UAC popup, the "System Properties" pane will open
+      and you will see a button labeled "Environment Variables."
+      Clicking this button will open the "Environment Variables" pane, and the PATH variable can be
+      found in the "System variables" section."
+
+3. After unzipping ppp_source.zip and starting MinGW Developer Studio:
+    Project / Open Project  - ppp_source/ppp.msp
+    Build / Compile - there'll come exe in ppp_source/Release/ppp.exe
+
+
+Linux etc
+---------
+Linux etc
+
+ ./configure
+ make
+ sudo make install
+
+so that installs binary to /usr/local/bin/ppp
+To remove it just do: sudo rm /usr/local/bin/ppp
+and to clean ppp dir just: make clean
+
+
+

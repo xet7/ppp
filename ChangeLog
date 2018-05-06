@@ -1,0 +1,84 @@
+ppp CHANGELOG
+
+2018-05-07:
+Changes:
+- Moved files from http://www.xet7.org/ppp to GitHub
+- Added Simplified BSD License
+
+2007-11-16:
+Changes:
+- PPPv3 from John merged
+- made StartMinGW.bat file for adding paths to get compiling on Vista working
+  because Vista has security changes so MinGW Studio can't find cc1.exe and as.exe,
+  found this path info from http://www.nabble.com/cc1-not-found-t3488675.html
+- changed Makefile to remove CFLAGS -O2 and add LDFLAGS -lm
+  (Makefile is used on Linux, on Windows MinGW uses project file settings)
+Misc notes:
+- John's PPPv3 c-version compiles on Ubuntu without my changes too,
+  though then installing binary needs to be made with cp, not "sudo make install"
+- on Ubuntu compiled John's version is 54164 bytes and my version 53647 bytes
+  (517 bytes smaller), maybe because of:
+    - John's version compiles with cc and mine with gcc
+    - or compiler flags
+    - or my code changes in ppp.c
+    - or something else...
+- Windows Open Source PPPv3 version and Steve's current PPPv2 version
+  works on Linux x86 with Wine too: "wine ppp.exe ..."
+
+2007-11-06:
+- PPPv2 from John merged
+- Windows binary now smaller, because it's Release build, not Debug
+
+2007-10-30:
+- merged John:s newest changes (thank's for mentioning it Lazier)
+- fixed compiling on Linux, something got messed up when making
+  previous version (thank's for mentioning it Andrew Burns)
+- binaries for Linux and Windows in separate .zip
+
+2007-10-28 later:
+- Trying to get Makefiles right, using docs from
+  http://vindaci.members.sonic.net/cbreak/projects/autotools/
+-- added getloadavg.c from XEmacs, as hinted at
+   https://lists.ubuntu.com/archives/dapper-changes/2005-November/000547.html
+   * Use AC_FUNC_GETLOADAVG and getloadavg.c from XEmacs, so that the
+     system function is used first, then the getloadavg.c from at if it isn't
+     available (closes: #269440)
+  http://www.koders.com/c/fid3187DAB1E8DCB8E4FFDEB9F0C5D431FD436669D9.aspx?s=cdef%3Amd5
+-- to get aclocal working, needed to patch /usr/share/aclocal/nspr.m4
+   https://bugs.launchpad.net/ubuntu/+source/mozilla/+bug/5907
+-- ok, now you can do:
+	./configure
+	make
+	sudo make install
+   so that installs binary to /usr/local/bin/ppp
+   To remove it just do:	sudo rm /usr/local/bin/ppp
+   and to clean ppp dir just:	make clean
+- FIX: added "#ifdef HAVE_SYS_TIME_H" so that it detects the need to use
+       #include <time.h> or <sys/time.h>
+- still needed "#ifdef __WIN32 <sys/time.h>"  too
+- included Windows and Linux binaries
+- to GenerateRandomKey combined #ifdefs:
+  HAVE_GETTIMEOFDAY, HAVE_GETHOSTNAME, HAVE_GETLOADAVG
+  so less code duplication between WIN32 and Linux, and maybe may even
+  work better on other linuxes
+
+2007-10-28:
+- updated John:s newest changes
+- added ifdef __WIN32 for Windows-specific code
+- function ConvertHexToKey fixed compile warning (hope I didn't break anything):
+  return key->byte[j];   // Fix for "warning: control reaches end of non-void function"
+- changed #include <sys/date.h> to <date.h> on Linux to get it compiling on Ubuntu Gutsy
+  Gibbon, but maybe some Linux uses <sys/date.h> too?
+- added CHANGELOG.txt, INSTALL.txt, AUTHORS.txt, LICENSE.txt
+
+2007-10-27:
+Changes to GenerateRandomSequenceKey function:
+- added rdtsc by Kazutomo Yoshii (instead of loadavg)
+  from: http://www-unix.mcs.anl.gov/~kazutomo/rdtsc.html
+- commented out gettimeofday and hostname, because I didn't yet find
+  BSD or Public Domain code for them
+- tried to get MAC Address with sample code from
+  http://www.codeguru.com/Cpp/I-N/network/networkinformation/article.php/c5451
+  but didn't get it to compile without warnings, so not added.
+
+
